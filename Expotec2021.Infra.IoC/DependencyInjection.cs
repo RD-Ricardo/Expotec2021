@@ -1,8 +1,12 @@
+using System;
 using Expotec2021.Application.Mappings;
+using Expotec2021.Domain.Auth;
 using Expotec2021.Domain.Interfaces;
 using Expotec2021.Infra.Data.context;
 using Expotec2021.Infra.Data.Repositories;
 using Expotec2021.Infra.Identity.models;
+using Expotec2021.Infra.Identity.services;
+using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +24,8 @@ namespace Expotec2021.Infra.IoC
             options.UseMySql(connectioMysql, ServerVersion.AutoDetect(connectioMysql), 
             b => b.MigrationsAssembly(typeof(Context).Assembly.FullName)));
         
+
+            //Identity
             services.AddIdentity<User,IdentityRole>(option => 
             {
                 option.Password.RequiredLength = 5;
@@ -31,6 +37,10 @@ namespace Expotec2021.Infra.IoC
                 .AddEntityFrameworkStores<Context>()
                 .AddDefaultTokenProviders();
 
+
+            services.AddScoped<IAuthenticate,AuthenticateService>();
+            services.AddScoped<ISeendUserRoleInitial,SeendUserRoleInitial>();  
+
             //Repository
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IJobsRepository, JobsRepository>();
@@ -38,7 +48,9 @@ namespace Expotec2021.Infra.IoC
             services.AddScoped<IPostsRepository, PostsRepository>();
             services.AddScoped<IListTaskRepository, ListTaskRepository>(); 
 
-            //Services
+            //Mediator
+            var myHandles = AppDomain.CurrentDomain.Load("Expotec2021.Application");
+            services.AddMediatR(myHandles);
 
             //AutoMapper
             services.AddAutoMapper(typeof(DomainForMappingProfile));
