@@ -1,0 +1,80 @@
+<link rel="stylesheet" href="~/css/shared.css" />
+
+<div class="col-md-2">
+        <div class="border border-light rounded-5 card shadow p-3  bg-body rounded">
+            <h4 class="mt-3"><span class="fonte"><i class="bi bi-globe2 mr-2 color"></i>Informações</span></h4>
+            <ul>
+                 <li class="nav-link">Cep 
+                    <p class="item " id="User">@Model.CodIbge</p>
+                </li>
+                <li class="nav-link">Cidade 
+                    <p class="item " id="cidade"></p>
+                </li>
+                <li class="nav-link ">População 
+                    <p class="item " id="populacao" ></p>
+                </li>
+                <li class="nav-link">População   2019 
+                    <p class="item" id="popolacaoAnosAnterior"></p>
+                </li>
+                <li class="nav-link">Pandemia 
+                    <p class="item" id="pandemia"></p>
+                </li>
+                <li class="nav-link">Mortes 
+                    <p class="item" id="mortes"></p>
+                </li>
+            </ul>
+        </div>
+<div>
+ 
+  
+
+<script>
+async function ApiCep()
+{
+    var cep = document.getElementById('User').innerText;
+    var urlCep = `https://viacep.com.br/ws/${cep}/json/`;
+    var repsonse = await fetch(urlCep);
+    if(repsonse.ok)
+    {   
+        var reuslt = await repsonse.json();
+        var ibgCode = reuslt.ibge;
+        await ApiCovid(ibgCode);
+    }
+
+}
+async function ApiCovid(para)
+{
+        var urlCovid = `https://api.brasil.io/v1/dataset/covid19/caso/data/?city_ibge_code=${para}&is_last=True`;
+        const token = "83845b71115e29b1fa4289961390a4a4c5f4b22c";
+
+        var txtCidade = document.getElementById('cidade');
+        var txtPopulacao = document.getElementById('populacao');
+        var txtPopulacaoAno = document.getElementById('popolacaoAnosAnterior');
+        var txtMortes = document.getElementById('mortes');
+        var txtPandemia = document.getElementById('pandemia');
+
+        const responseApi = await fetch(urlCovid, 
+            {
+            method: 'get',
+            headers: {
+                Authorization: `Token ${token}`,
+            },
+            })
+            if(responseApi.ok)
+            {
+                console.log("Covid OK")
+                const resultCovid =  await responseApi.json();
+                const seiNao = resultCovid;
+                txtCidade.innerText = seiNao.results[0].city;
+                txtPopulacao.innerText = seiNao.results[0].estimated_population;
+                txtPandemia.innerText = seiNao.results[0].confirmed;
+                txtPopulacaoAno.innerText = seiNao.results[0].estimated_population_2019;
+                txtMortes.innerText = seiNao.results[0].deaths
+            }      
+}
+
+
+
+
+document.addEventListener('DOMContentLoaded', ApiCep());
+</script>

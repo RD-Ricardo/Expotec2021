@@ -10,6 +10,15 @@ namespace Expotec2021.Infra.Data.Configuration
         {
             builder.HasKey(k => k.Id);
             builder.Property(n => n.Name).HasMaxLength(30).IsRequired();
+
+            builder.HasData(
+                new CategoryLaunch(1, "Contas"),
+                new CategoryLaunch(2, "Comidas"),
+                new CategoryLaunch(3, "Compras"),
+                new CategoryLaunch(4, "Remédios"),
+                new CategoryLaunch(5, "Investimentos"),
+                new CategoryLaunch(6, "Diversos")
+            );
         }
     }
 }

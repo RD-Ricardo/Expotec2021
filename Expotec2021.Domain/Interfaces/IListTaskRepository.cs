@@ -9,7 +9,10 @@ namespace Expotec2021.Domain.Interfaces
         Task<ListTask> CreateAsync(ListTask model);
         Task<ListTask> UpdateAsync(ListTask model);
         Task<ListTask> DeleteAsync(ListTask model);
-        Task<IEnumerable<ListTask>> GetAllListTaskAsync();
+        Task<IEnumerable<ListTask>> GetAllListTaskAsync(ApplicationUser user);
         Task<ListTask> GetByIdListTaskAsync(int id);
+        Task<ApplicationUser> GetInformation(ApplicationUser user);
+
+        
     }
 }

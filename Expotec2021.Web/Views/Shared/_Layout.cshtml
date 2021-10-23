@@ -1,48 +1,51 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Expotec2021.Web</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>@ViewData["Title"]</title>
+    <link rel="shortcut icon" href="~/img/icone.png " type="image/png">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/navbar.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Expotec2021.Web</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+<div>
+   <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex justify-content-between align-items-center">
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - Expotec2021.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+      <div class="logo">
+        <h1><a asp-controller="home" asp-action="Index">Expotec</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+          <li><a asp-controller="Home" asp-action="Sobre">Quem Somos ?</a></li>
+          <li><a class="" asp-controller="Blog" asp-action="Index">Serviços</a></li>
+          @if (Context.User.Identity.IsAuthenticated == false)
+          {
+            <a  asp-controller="Account" asp-action="Login">Login</a>
+          }else{
+
+            <form asp-controller="Account" asp-action="Logout" method="post">
+              <button class="btn btn-info ml-4 mt-1" type="submit">Sair</button>
+            </form>
+            
+          }
+          
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header --> 
+    @RenderBody()
+</div>    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

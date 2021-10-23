@@ -1,0 +1,78 @@
+@{
+    ViewData["Title"] = "Notícias";
+}
+
+@model TarefaViewModel
+<link rel="stylesheet" href="~/css/Tarefas.css">
+<link rel="stylesheet" href="~/css/Noticia.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+<div id="usuario" class="container-fluid mt-5">
+    <div class="container">
+        <div class="row">
+            @await Html.PartialAsync("identity/_Navigation")
+            <div class="col-md-8" id="container_noticias">
+            </div>
+            @await Html.PartialAsync("Acho/_informationUser", @Model.user)   
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+async function iniciar()
+{
+    var url = 'http://servicodados.ibge.gov.br/api/v3/noticias/?busca=pandemia';
+          
+    var repsonse = await fetch(url);
+    console.log(repsonse)
+    if(repsonse.ok)
+    {   
+        var reuslt = await repsonse.json();
+        var ison = reuslt.items
+        console.log(ison)
+        exibeArtigos(ison);
+    } 
+
+    
+}
+
+
+
+function exibeArtigos (coisas)
+    {
+         const listaLinks = document.getElementById("container_noticias");
+
+        coisas.forEach((model) =>{
+
+            let data = new Date(model.publishedAt);
+            let dataFormatada = ((data.getDate() + " / "+ ((data.getMonth() + 1)) + " / " + data.getFullYear()));
+
+            listaLinks.insertAdjacentHTML("beforeend",`
+            
+                <div class="noticia row border border-light rounded-5 card shadow  bg-body rounded mb-5 p-4">
+                    <div class="info">
+                        <div>
+                            <p class="title">${model.titulo}</p>
+                            <p>
+                                ${model.introducao}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="info-low">
+                        <a href="${model.link}">Ver noticia</a>
+                        <span class="data">${model.data_publicacao}</span>
+                    </div>
+                </div>
+            `);
+        });
+
+
+
+     
+    }
+    
+
+document.addEventListener('DOMContentLoaded', iniciar());
+</script>

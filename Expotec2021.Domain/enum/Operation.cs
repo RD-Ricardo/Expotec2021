@@ -2,7 +2,7 @@ namespace Expotec2021.Domain.Entities
 {
     public enum Operation
     {
-        DEBIT = 1,
-        CREDIT = 2
+        entradas = 1,
+        despesas = 0
     }
 }

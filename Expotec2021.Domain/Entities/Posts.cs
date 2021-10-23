@@ -5,11 +5,15 @@ namespace Expotec2021.Domain.Entities
 {
     public sealed class Posts  : Base
     {
-        public string  Description { get; private set; }
-        public string  Image { get; private set; }
-        public DateTime CreateDate { get; set; }
-        public DateTime UpdateDate { get; set; }
+        public Posts()
+        {
+            CreateDate = DateTime.Now;
+            Likes = 0;
+        }
+        public string  Description { get;  set; }
+        public string  Image { get;  set; }
         public int Likes { get; set; }
-        public string UserId  { get; set; }
+        public string ApplicationUserId { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
     }
 }

@@ -1,0 +1,38 @@
+.label {
+    display: flex;
+    margin-left: 15px;
+    /* Rounded border */
+    border-radius: 9999px;
+
+    /* Size */
+    height: 30px;
+    width: 75px;
+
+    /* OFF status */
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+
+    /* ON status */
+    background-color: #357edd;
+    border: 1px solid #357edd;
+    /* Push the circle to the right */
+    justify-content: flex-end;
+}
+
+.label__input {
+    /* Hide the input */
+    display: none;
+}
+
+.label__circle {
+    /* Rounded border */
+    border-radius: 9999px;
+
+    /* Size */
+    width: 32px;
+
+    background-color: #fff;
+
+    /* OFF status */
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}

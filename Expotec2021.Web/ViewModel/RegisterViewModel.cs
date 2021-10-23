@@ -4,6 +4,7 @@ namespace Expotec2021.Web.ViewModel.RegisterViewModel
 {
     public class RegisterViewModel
     {
+        [Required(ErrorMessage = "E-mail Obrigatório")]
         [EmailAddress]
         public string Email { get; set; }
 
@@ -12,8 +13,11 @@ namespace Expotec2021.Web.ViewModel.RegisterViewModel
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "Passwords don´t match")]
+        [Display(Name = "Confirmar senha")]
+        [Compare("Password", ErrorMessage = "Senha diferente")]
         public string ConfirmPassword { get; set; }
+
+        [Required(ErrorMessage = "Cep Obrigatório")]
+        public string  Cep { get; set; }
     }
 }

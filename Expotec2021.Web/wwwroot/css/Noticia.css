@@ -1,0 +1,23 @@
+.info{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+.title{
+    font-weight: 700;
+    font-size: 22px;
+}
+
+
+.imgTeste{
+   width: 250px;
+   height: 200px;
+   border-radius:5% ;
+   margin-left: 10px;
+}
+
+.info-low{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}

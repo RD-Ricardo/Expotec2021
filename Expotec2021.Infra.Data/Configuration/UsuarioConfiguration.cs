@@ -1,13 +1,12 @@
 using Expotec2021.Domain.Entities;
-using Expotec2021.Infra.Identity.models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Expotec2021.Infra.Data.Configuration
 {
-    public class UsuarioConfiguration : IEntityTypeConfiguration<User>
+    public class UsuarioConfiguration : IEntityTypeConfiguration<ApplicationUser>
     {
-        public void Configure(EntityTypeBuilder<User> builder)
+        public void Configure(EntityTypeBuilder<ApplicationUser> builder)
         {
             builder.HasKey(u => u.Id);
             builder.Property(u => u.Id).IsRequired();

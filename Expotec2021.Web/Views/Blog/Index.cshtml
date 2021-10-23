@@ -1,0 +1,139 @@
+@{
+    ViewData["Title"] = "Blog";
+}
+
+@model BlogViewModel
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<link rel="stylesheet" href="~/css/site.css">
+<div id="usuario" class="container-fluid mt-5">
+        <div class="container">
+            <div class="row">
+               @await Html.PartialAsync("identity/_Navigation")
+                <div class="col-md-8 " >
+                    <nav class="navbar  mb-4 br-3 border-1 custon-card" >
+                    <h4 class="text-center title p-1 mt-1"> Postagem</h4>
+                    <button class=" btn btn-info custon-btn" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-down" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                            <path fill-rule="evenodd" d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarsExample01">
+                        <form class="mt-3" asp-controller="Blog" method="POST" asp-action="Postar" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">Título</label>
+                                <input asp-for="Post.Name"  class="form-control" id="exampleFormControlInput1" placeholder="Vacina Covid-19">
+                            </div>
+                            <div class="form-floating">
+                                <textarea asp-for="Post.Description" class="form-control"  id="floatingTextarea2" style="height: 100px"></textarea>
+                            </div>
+                             <div class="form-group mt-2 ml-1">
+                                <input asp-for="Post.Profile" class="inputFile">
+                                <label asp-for="Post.Profile" class="eufiz">importar foto <i class="bi bi-file-earmark-arrow-up"></i></label>
+                            </div> 
+                            <div class="row justify-content-between p-4">
+                                <button type="submit" class="btn btn-success btn-block "> Criar</button>
+                            </div>
+                            
+                        </form>
+                    </div>
+                    </nav>
+                    @foreach (var item in Model.ListPost)
+                    {
+                    <div class="card shadow p-3 mb-5 bg-body card-custom">
+                        <div class="border border-light rounded-5 p-2" style="border-radius: 10px;">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between ">
+                                    <h4 class=" border-bottom border-dark">@Html.DisplayFor(modelItem => item.Name)</h4>
+                                    <div class="col-0 mb-1">
+                                        <small class="text-muted date">@Html.DisplayFor(modelItem => item.CreateDate)</small> 
+                                        
+                                    </div>
+                                </div>
+                                <p class="card-text mt-3 ">@Html.DisplayFor(modelItem => item.Description)</p>
+
+
+                                @if(item.Image == null)
+                                {
+                                    <div class="img-container mt-2">
+                                         <img src="~/Imagens/semfoto.png" width="100%" height="100%" class="img-post">
+                                    </div>
+                                }else
+                                {
+                                    <div class="img-container mt-2">
+                                         <img src="~/Imagens/@item.Image" width="100%" height="100%" class="img-post">
+                                    </div>
+                                }
+                                
+                            </div>
+                          
+                            <div class=" ml-3 container_likes">
+                                <button class="btn link-curtir" data-id="@item.Id">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                                        <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 
+                                        2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 
+                                        0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                    </svg>
+                                     <div class="likes">@Html.DisplayFor(modelItetm => item.Likes)</div>
+                                </button>
+
+                             
+                            </div>
+                        </div>
+                    </div>
+                    } 
+                </div>
+                    @await Html.PartialAsync("Acho/_InformationUser", @Model.UserLogin)
+            </div>
+        </div>
+    </div>
+    <div>
+</div>
+
+
+@section Scripts {
+    <script>
+
+     function iniciar(){
+        
+        const botoesCurtir = document.querySelectorAll(".link-curtir");
+        botoesCurtir.forEach((link) => link.addEventListener("click", curtir));
+    }
+
+
+    const curtir = async (e) =>
+    {
+        e.preventDefault();
+        const id = e.currentTarget.dataset.id;
+        
+        if(!localStorage.getItem(`blog.curtidas.id.${id}`))
+        {
+            const url = `https://apiexpotec2021.azurewebsites.net/api/tarefas/${id}`;
+            const urlOptions = {
+                method:'PATCH',
+            };
+
+            const response = await fetch(url, urlOptions);
+            if(response.ok)
+            {
+                const result = await response.json();
+                const curtidas = document.querySelector(`button[data-id="${id}"] > .likes`);
+                curtidas.innerHTML = result.curtidaDTO;
+                localStorage.setItem(`blog.curtidas.id.${id}`, true)
+            }
+
+
+        }
+    } 
+
+
+   
+    
+    document.addEventListener('DOMContentLoaded', iniciar());
+</script>
+}
+

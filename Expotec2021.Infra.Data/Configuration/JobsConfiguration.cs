@@ -13,7 +13,7 @@ namespace Expotec2021.Infra.Data.Configuration
             builder.Property(d => d.Description).HasMaxLength(200).IsRequired();
             builder.Property(l => l.Location).HasMaxLength(100).IsRequired();
             builder.Property(l => l.Contact).HasMaxLength(20).IsRequired();
-            builder.Property(e => e.UserId).IsRequired();
+            builder.Property(e => e.ApplicationUserId).IsRequired();
         }
     }
 }

@@ -17,43 +17,56 @@ namespace Expotec2021.Infra.Data.Repositories
             _dbcontextListTask.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
         public async Task<ListTask> CreateAsync(ListTask model)
-        {
+        {   
             _dbcontextListTask.listTasks.Add(model);
+
             await _dbcontextListTask.SaveChangesAsync();
+
             return model;
         }
 
         public async Task<ListTask> DeleteAsync(ListTask model)
         {
+
             _dbcontextListTask.listTasks.Remove(model);
             await _dbcontextListTask.SaveChangesAsync();
             return model;
         }
 
-        public async  Task<IEnumerable<ListTask>> GetAllListTaskAsync()
+        public async  Task<IEnumerable<ListTask>> GetAllListTaskAsync(ApplicationUser user)
         {
             IEnumerable<ListTask> query = await _dbcontextListTask.listTasks
-                .OrderBy(o => o.CreateDate)
+                .OrderByDescending(c => c.CreateDate)
+                .Where(c => c.ApplicationUserId == user.Id)
                 .ToListAsync();
                 return query;
+        }
+        
+
+        public async Task<ApplicationUser> GetInformation(ApplicationUser user)
+        {
+            return await _dbcontextListTask.Users.Where(c => c.Id == user.Id).FirstOrDefaultAsync();
         }
 
         public async Task<ListTask> GetByIdListTaskAsync(int id)
         {
-           var result = await _dbcontextListTask.listTasks
-            .Where(c => c.Id == id)
-            .FirstOrDefaultAsync();
-            if(result == null)
-            {
-                return null;
-            }
-            return result;
+           return await _dbcontextListTask.listTasks.FindAsync(id);
         }
 
         public async Task<ListTask> UpdateAsync(ListTask model)
         {
-           _dbcontextListTask.listTasks.Update(model);  
-           if(model == null) return null;
+
+            var novoModel = new ListTask()
+            {
+                Id = 101,
+                Name = "Eu coloquei esse nome",
+                Description = "Tentando fazer um update ",
+                Check =  true
+            };
+            
+
+            model = novoModel;
+            _dbcontextListTask.listTasks.Update(model);
             await _dbcontextListTask.SaveChangesAsync();
             return model;
         }

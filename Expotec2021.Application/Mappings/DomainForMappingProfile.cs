@@ -9,10 +9,9 @@ namespace Expotec2021.Application.Mappings
         public DomainForMappingProfile()
         {
             CreateMap<Jobs,JobsDTO>().ReverseMap();
-            CreateMap<Accounts,AccountsDTO>().ReverseMap();
             CreateMap<CategoryLaunch,CategoryLaunchDTO>().ReverseMap();
             CreateMap<Launchs,LaunchsDTO>().ReverseMap();
-            CreateMap<ListTask,ListTaskDTO>().ReverseMap();
+            CreateMap<ListTask,ListTasksDTO>().ReverseMap();
             CreateMap<Posts,PostDTO>().ReverseMap();
         }
     }

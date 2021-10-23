@@ -17,198 +17,7 @@ namespace Expotec2021.Infra.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.9");
 
-            modelBuilder.Entity("Expotec2021.Domain.Entities.Accounts", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("varchar(255)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("accounts");
-                });
-
-            modelBuilder.Entity("Expotec2021.Domain.Entities.CategoryLaunch", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("varchar(30)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("categoryLaunches");
-                });
-
-            modelBuilder.Entity("Expotec2021.Domain.Entities.Jobs", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Contact")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("varchar(20)");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("varchar(200)");
-
-                    b.Property<string>("Location")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("varchar(255)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("jobs");
-                });
-
-            modelBuilder.Entity("Expotec2021.Domain.Entities.Launchs", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("AccountsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(150)
-                        .HasColumnType("varchar(150)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<int>("Operation")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<decimal>("price")
-                        .HasPrecision(10, 2)
-                        .HasColumnType("decimal(10,2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AccountsId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("launchs");
-                });
-
-            modelBuilder.Entity("Expotec2021.Domain.Entities.ListTask", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<bool>("Check")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(200)
-                        .HasColumnType("varchar(200)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("varchar(255)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("listTasks");
-                });
-
-            modelBuilder.Entity("Expotec2021.Domain.Entities.Posts", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(200)
-                        .HasColumnType("varchar(200)");
-
-                    b.Property<string>("Image")
-                        .HasMaxLength(250)
-                        .HasColumnType("varchar(250)");
-
-                    b.Property<int>("Likes")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("longtext");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("varchar(255)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("posts");
-                });
-
-            modelBuilder.Entity("Expotec2021.Infra.Identity.models.User", b =>
+            modelBuilder.Entity("Expotec2021.Domain.Entities.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
@@ -216,10 +25,7 @@ namespace Expotec2021.Infra.Data.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<string>("Cep")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("City")
+                    b.Property<string>("CodIbge")
                         .HasColumnType("longtext");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -232,6 +38,9 @@ namespace Expotec2021.Infra.Data.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("ImgAvatar")
+                        .HasColumnType("longtext");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("tinyint(1)");
@@ -259,9 +68,6 @@ namespace Expotec2021.Infra.Data.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("State")
-                        .HasColumnType("longtext");
-
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("tinyint(1)");
 
@@ -279,6 +85,204 @@ namespace Expotec2021.Infra.Data.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("Expotec2021.Domain.Entities.CategoryLaunch", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("categoryLaunches");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Contas"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Comidas"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Compras"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Remédios"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Investimentos"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Diversos"
+                        });
+                });
+
+            modelBuilder.Entity("Expotec2021.Domain.Entities.Jobs", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Contact")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("jobs");
+                });
+
+            modelBuilder.Entity("Expotec2021.Domain.Entities.Launchs", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("Operation")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("price")
+                        .HasPrecision(6, 2)
+                        .HasColumnType("decimal(6,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("launchs");
+                });
+
+            modelBuilder.Entity("Expotec2021.Domain.Entities.ListTask", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<bool>("Check")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("listTasks");
+                });
+
+            modelBuilder.Entity("Expotec2021.Domain.Entities.Posts", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("Image")
+                        .HasMaxLength(250)
+                        .HasColumnType("varchar(250)");
+
+                    b.Property<int>("Likes")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("posts");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -409,59 +413,56 @@ namespace Expotec2021.Infra.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Expotec2021.Domain.Entities.Accounts", b =>
-                {
-                    b.HasOne("Expotec2021.Infra.Identity.models.User", null)
-                        .WithMany("Accounts")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Expotec2021.Domain.Entities.Jobs", b =>
                 {
-                    b.HasOne("Expotec2021.Infra.Identity.models.User", null)
-                        .WithMany("Jobs")
-                        .HasForeignKey("UserId")
+                    b.HasOne("Expotec2021.Domain.Entities.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("Expotec2021.Domain.Entities.Launchs", b =>
                 {
-                    b.HasOne("Expotec2021.Domain.Entities.Accounts", "Accounts")
-                        .WithMany("Launchs")
-                        .HasForeignKey("AccountsId")
+                    b.HasOne("Expotec2021.Domain.Entities.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Expotec2021.Domain.Entities.CategoryLaunch", "Category")
-                        .WithMany()
+                        .WithMany("Launchs")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Accounts");
+                    b.Navigation("ApplicationUser");
 
                     b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Expotec2021.Domain.Entities.ListTask", b =>
                 {
-                    b.HasOne("Expotec2021.Infra.Identity.models.User", null)
-                        .WithMany("ListTasks")
-                        .HasForeignKey("UserId")
+                    b.HasOne("Expotec2021.Domain.Entities.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("Expotec2021.Domain.Entities.Posts", b =>
                 {
-                    b.HasOne("Expotec2021.Infra.Identity.models.User", null)
-                        .WithMany("Posts")
-                        .HasForeignKey("UserId")
+                    b.HasOne("Expotec2021.Domain.Entities.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -475,7 +476,7 @@ namespace Expotec2021.Infra.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Expotec2021.Infra.Identity.models.User", null)
+                    b.HasOne("Expotec2021.Domain.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -484,7 +485,7 @@ namespace Expotec2021.Infra.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Expotec2021.Infra.Identity.models.User", null)
+                    b.HasOne("Expotec2021.Domain.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -499,7 +500,7 @@ namespace Expotec2021.Infra.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Expotec2021.Infra.Identity.models.User", null)
+                    b.HasOne("Expotec2021.Domain.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -508,27 +509,16 @@ namespace Expotec2021.Infra.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Expotec2021.Infra.Identity.models.User", null)
+                    b.HasOne("Expotec2021.Domain.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Expotec2021.Domain.Entities.Accounts", b =>
+            modelBuilder.Entity("Expotec2021.Domain.Entities.CategoryLaunch", b =>
                 {
                     b.Navigation("Launchs");
-                });
-
-            modelBuilder.Entity("Expotec2021.Infra.Identity.models.User", b =>
-                {
-                    b.Navigation("Accounts");
-
-                    b.Navigation("Jobs");
-
-                    b.Navigation("ListTasks");
-
-                    b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618
         }

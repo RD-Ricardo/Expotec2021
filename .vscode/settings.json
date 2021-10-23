@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/ca4e2ac4-6e69-4d35-b245-90b30ec53c73/resourceGroups/appsvc_windows_centralus/providers/Microsoft.Web/sites/expotec2021",
+    "appService.deploySubpath": "Expotec2021.Web"
+}

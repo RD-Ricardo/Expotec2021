@@ -34,7 +34,7 @@ namespace Expotec2021.Infra.Data.Repositories
 
         public async Task<IEnumerable<Posts>> GetAllPostsAsync()
         {
-            IEnumerable<Posts> query = await _dbContext.posts.OrderBy(c => c.CreateDate).ToListAsync();;
+            IEnumerable<Posts> query = await _dbContext.posts.OrderByDescending(c => c.CreateDate).ToListAsync();;
             return query;
         }
 
@@ -43,6 +43,12 @@ namespace Expotec2021.Infra.Data.Repositories
            var query = await _dbContext.posts.FirstOrDefaultAsync(c => c.Id  == id);
            return query;
         }
+
+        public async Task<ApplicationUser> GetInformation(ApplicationUser user)
+        {
+            return await _dbContext.Users.Where(c => c.Id == user.Id).FirstOrDefaultAsync();
+        }
+
 
         public async Task<Posts> UpdateAsync(Posts model)
         {

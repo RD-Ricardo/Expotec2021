@@ -4,7 +4,6 @@
     <ProjectReference Include="..\Expotec2021.Domain\Expotec2021.Domain.csproj" />
     <ProjectReference Include="..\Expotec2021.Application\Expotec2021.Application.csproj" />
     <ProjectReference Include="..\Expotec2021.Infra.Data\Expotec2021.Infra.Data.csproj" />
-    <ProjectReference Include="..\Expotec2021.Infra.Identity\Expotec2021.Infra.Identity.csproj" />
   </ItemGroup>
 
   <ItemGroup>

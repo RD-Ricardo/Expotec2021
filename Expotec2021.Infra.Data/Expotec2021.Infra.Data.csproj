@@ -20,7 +20,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Expotec2021.Domain\Expotec2021.Domain.csproj" />
-    <ProjectReference Include="..\Expotec2021.Infra.Identity\Expotec2021.Infra.Identity.csproj" />
   </ItemGroup>
 
 </Project>

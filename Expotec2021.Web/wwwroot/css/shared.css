@@ -1,0 +1,27 @@
+.item{
+    width: 100%;
+    color: #ffffff;
+    border-radius: 4px;
+    background-color: #17a2b7;
+    font-size: 17px;
+    font-weight: bold;
+    margin: 0;
+}
+.nav-link{
+    width: 100%;
+    font-weight: 500;
+}
+
+.item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.color{
+    color: #586466;
+}
+
+.fonte {
+    font-size: 18px;
+}

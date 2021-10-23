@@ -1,0 +1,108 @@
+@{
+    ViewData["Title"] = "Tarefas";
+}
+
+@model TarefaViewModel
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+<link rel="stylesheet" href="~/css/Tarefas.css">
+<div id="usuario" class="container-fluid mt-5">
+    <div class="container">
+        <div class="row">
+            @await Html.PartialAsync("identity/_Navigation")
+            <div class="col-md-8 container_tarefas " >
+                <div class="tarefa_slide mb-3">
+                    <span class="border-i mt-4">
+                        Tarefas
+                    </span>
+                    <form class="form-inline  ml-4 iso" asp-action="Create" asp-controller="Tarefas">
+                        <div class="row ok">
+                            <input asp-for="TasksCreate.Name" class="form-control" placeholder="Nome ex: Lição#12">
+                            <input asp-for="TasksCreate.Description" class="form-control" placeholder="Descrição: Portugues ">
+                            <button type="submit" class="btn btn-primary"><i class="bi bi-journal-plus"></i></button>
+                        </div>
+                    </form>
+                </div>
+                @foreach (var item in Model.ListTask)
+                {       
+                    <div class="item-task">
+                        <div class="item-display">
+                             @Html.DisplayFor(modelItem => item.Check)
+                        </div>                
+                        <div class="item-display">
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </div>
+                        <div class="item-display">
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </div>
+                        <div class="date">
+                            @Html.DisplayFor(modelItem => item.CreateDate)
+                        </div>
+
+                        <div class="local">
+                        @if(item.Check == true)
+                        {
+                            <button type="button" class="btn btn-outline-success" id="updateFeito" data-item="@item.Id"><i class="bi bi-journal-check"></i></button>
+                        }else{
+                           
+                            <button class="btn btn-outline-warning" id="updateFeito" data-item="@item.Id" ><i class="bi bi-journal-x"></i></button>
+                           
+                            
+                        }
+                        <button type="button" class="btn btn-outline-danger" data-item="@item.Id" id="deletar"><i class="bi bi-archive"></i></button>
+                    </div>          
+                </div>
+                }
+            </div>   
+             @await Html.PartialAsync("Acho/_informationUser", @Model.user) 
+
+
+               
+        </div>
+    </div>
+</div>
+<script>
+    function iniciar(){
+        const btn = document.querySelectorAll('#deletar').forEach(o => o.addEventListener('click' , ()=>{
+            let id = o.getAttribute('data-item');
+             if (confirm("Você tem certeza que gostaria de excluir este registro?")) {
+                    $.ajax({
+                        method: "POST",
+                        url: "/Tarefas/Delete/" + id,
+                        success: function (data) {
+                            setTimeout(function () {
+                            location.reload()
+                        }, 100);
+                        },
+                        error: function (data) {
+                            alert("Houve um erro na pesquisa.");
+                        }
+                    });
+                }
+        }));
+
+
+
+        const btnUpdate = document.querySelectorAll('#updateFeito').forEach(o => o.addEventListener('click' , ()=>{
+            let idNovo = o.getAttribute('data-item');
+             if (confirm("Voce quer atualizar?")) {
+                    $.ajax({
+                        method: "PUT",
+                        url: "https://apiexpotec2021.azurewebsites.net/api/tarefas/apiTarefas/" + idNovo,
+                        success: function (dat) {
+                             setTimeout(function () {
+                            location.reload()
+                        }, 100);
+                        },
+                        error: function (dat) {
+                            alert("Houve um erro na pesquisa.");
+                        }
+                    });
+                }
+                
+
+                console.log(idNovo);
+        }));
+    }
+    document.addEventListener('DOMContentLoaded', iniciar());
+</script>

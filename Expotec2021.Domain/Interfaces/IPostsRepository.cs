@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Expotec2021.Domain.Entities;
 
+
 namespace Expotec2021.Domain.Interfaces
 {
     public interface IPostsRepository
@@ -11,5 +12,6 @@ namespace Expotec2021.Domain.Interfaces
         Task<Posts> DeleteAsync(Posts model);
         Task<IEnumerable<Posts>> GetAllPostsAsync();
         Task<Posts> GetByIdPostsAsync(int id);
+        Task<ApplicationUser> GetInformation(ApplicationUser user);
     }
 }

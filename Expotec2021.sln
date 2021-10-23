@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expotec2021.Web", "Expotec2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expotec2021.Infra.IoC", "Expotec2021.Infra.IoC\Expotec2021.Infra.IoC.csproj", "{9B109BD6-BD6C-482E-B15D-80DC62C48BBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expotec2021.Infra.Identity", "Expotec2021.Infra.Identity\Expotec2021.Infra.Identity.csproj", "{C691A9F4-5FE9-4292-BC4B-61C16FE4578D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expotec2021.Api", "Expotec2021.Api\Expotec2021.Api.csproj", "{C29F7BA7-AF31-4F61-B619-4B471CF6AE51}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -112,5 +112,17 @@ Global
 		{C691A9F4-5FE9-4292-BC4B-61C16FE4578D}.Release|x64.Build.0 = Release|Any CPU
 		{C691A9F4-5FE9-4292-BC4B-61C16FE4578D}.Release|x86.ActiveCfg = Release|Any CPU
 		{C691A9F4-5FE9-4292-BC4B-61C16FE4578D}.Release|x86.Build.0 = Release|Any CPU
+		{C29F7BA7-AF31-4F61-B619-4B471CF6AE51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C29F7BA7-AF31-4F61-B619-4B471CF6AE51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C29F7BA7-AF31-4F61-B619-4B471CF6AE51}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C29F7BA7-AF31-4F61-B619-4B471CF6AE51}.Debug|x64.Build.0 = Debug|Any CPU
+		{C29F7BA7-AF31-4F61-B619-4B471CF6AE51}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C29F7BA7-AF31-4F61-B619-4B471CF6AE51}.Debug|x86.Build.0 = Debug|Any CPU
+		{C29F7BA7-AF31-4F61-B619-4B471CF6AE51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C29F7BA7-AF31-4F61-B619-4B471CF6AE51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C29F7BA7-AF31-4F61-B619-4B471CF6AE51}.Release|x64.ActiveCfg = Release|Any CPU
+		{C29F7BA7-AF31-4F61-B619-4B471CF6AE51}.Release|x64.Build.0 = Release|Any CPU
+		{C29F7BA7-AF31-4F61-B619-4B471CF6AE51}.Release|x86.ActiveCfg = Release|Any CPU
+		{C29F7BA7-AF31-4F61-B619-4B471CF6AE51}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

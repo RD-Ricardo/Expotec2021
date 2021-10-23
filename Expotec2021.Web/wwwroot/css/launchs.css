@@ -1,0 +1,44 @@
+.custon-launchs{
+    display: block;
+    border-radius: 10px;
+    padding: 10px;
+    overflow: auto;
+    height: 100%;
+}
+
+.custon-launchs::-webkit-scrollbar{
+    border-radius: 1px;
+    background: rgba(190, 214, 245, 0.8); 
+    width: 8px; 
+}
+.launchs{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 80px;
+    box-shadow: 0px 0px 5px 0px rgba(170, 170, 170, 0.56);
+    border-radius: 5px;
+    margin: 10px 0px;
+    font-weight: 400;
+    padding: 10px;
+}
+
+
+.vh{
+    height: 10vh;
+}
+
+
+.positivo{
+    font-size: 30px;
+    color: rgb(39, 119, 43);
+    font-weight: 400;
+}
+
+.negativo{
+    font-size: 30px;
+    color: rgb(228, 27, 27);
+    font-weight: 400;
+}
+

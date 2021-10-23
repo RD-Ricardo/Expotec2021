@@ -1,0 +1,13 @@
+@model TarefaViewModel
+
+<div id="usuario" class="container-fluid mt-5">
+    <div class="container">
+        <div class="row">
+            @await Html.PartialAsync("identity/_Navigation")
+            <div class="col-md-8 ">
+                <img src="~/img/construção.png" alt="" style="width: 100%; ">
+            </div>
+            @await Html.PartialAsync("Acho/_informationUser", @Model.user)   
+        </div>
+    </div>
+</div>

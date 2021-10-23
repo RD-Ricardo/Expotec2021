@@ -15,20 +15,18 @@ namespace Expotec2021.Infra.Data.Repositories
         {
             _dbContextJobs = dbContextJobs;
         }
-        public async Task<Jobs> CreateAsync(Jobs model)
+        public async Task<Jobs> CreateAsync(Jobs model, ApplicationUser user)
         {
-            _dbContextJobs.jobs.Add(model);
-            if(model == null)
-            {
-                return null;
-            }
-            await _dbContextJobs.SaveChangesAsync();
-            return model;
-        }
 
-        public async Task<Jobs> DeleteAsync(Jobs model)
-        {
-            _dbContextJobs.jobs.Remove(model);
+            var result = new Jobs()
+            {
+                ApplicationUserId = user.Id,
+                CreateDate = System.DateTime.Now
+            };
+
+            result = model;
+
+            _dbContextJobs.jobs.Add(model);
             if(model == null)
             {
                 return null;
@@ -54,15 +52,31 @@ namespace Expotec2021.Infra.Data.Repositories
             return result; 
         }
 
-        public async Task<Jobs> UpdateAsync(Jobs model)
+        public async Task<Jobs> UpdateAsync(Jobs model, ApplicationUser user)
         {
+
+            var result = new Jobs()
+            {
+                ApplicationUserId = user.Id,
+                CreateDate = System.DateTime.Now
+            };
+
+            model = result;
            _dbContextJobs.jobs.Update(model);
+
             if(model == null)
             {
                 return null;
             }
             await _dbContextJobs.SaveChangesAsync();
+            
             return model;
         }
+
+        public async Task<ApplicationUser> GetInformation(ApplicationUser user)
+        {
+            return await _dbContextJobs.Users.Where(c => c.Id == user.Id).FirstOrDefaultAsync();
+        }
+
     }
 }
